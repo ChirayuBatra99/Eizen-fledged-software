@@ -7,7 +7,6 @@ from middleware import clear_auth_cookie, require_auth, set_auth_cookie, sign_us
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
-
 class LoginBody(BaseModel):
     username: str = ""
     password: str = ""

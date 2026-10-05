@@ -1,12 +1,12 @@
 import os
-from datetime import datetime, timedelta, timezone
-
 import jwt
+from datetime import datetime, timedelta, timezone
 from fastapi import Depends, HTTPException, Request, Response
 
 from db import query
 
 COOKIE = "clinic_token"
+
 
 class AppError(Exception):
     def __init__(self, message: str, status: int = 400):
@@ -28,7 +28,6 @@ def sign_user(user: dict) -> str:
     }
     return jwt.encode(payload, secret, algorithm="HS256")
 
-
 def set_auth_cookie(response: Response, token: str) -> None:
     response.set_cookie(
         key=COOKIE,
@@ -40,10 +39,8 @@ def set_auth_cookie(response: Response, token: str) -> None:
         path="/",
     )
 
-
 def clear_auth_cookie(response: Response) -> None:
     response.delete_cookie(COOKIE, path="/")
-
 
 def require_auth(request: Request) -> dict:
     token = request.cookies.get(COOKIE)
@@ -78,7 +75,6 @@ def require_auth(request: Request) -> dict:
     }
     request.state.user = current
     return current
-
 
 def require_role(*roles: str):
     def dependency(user: dict = Depends(require_auth)) -> dict:

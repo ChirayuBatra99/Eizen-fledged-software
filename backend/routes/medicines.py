@@ -7,24 +7,20 @@ from psycopg.errors import IntegrityError, UniqueViolation
 from db import query, with_transaction
 from middleware import AppError, require_auth
 
+
 router = APIRouter(
     prefix="/medicines", tags=["medicines"], dependencies=[Depends(require_auth)]
 )
-
 
 class MedicineCreateBody(BaseModel):
     name: str = ""
     unit: str = "unit"
     price: float | None = None
     stockQty: int | float | None = 0
-
-
 class MedicinePatchBody(BaseModel):
     name: str | None = None
     unit: str | None = None
     price: float | None = None
-
-
 class RestockBody(BaseModel):
     qty: int | float | None = None
     note: str | None = None
@@ -38,7 +34,6 @@ def _medicine_payload(row: dict) -> dict:
         "price": float(row["price"]),
         "stockQty": row["stock_qty"],
     }
-
 
 def _whole_number(value, *, min_value: int, error: str) -> int:
     if isinstance(value, bool):
@@ -62,7 +57,6 @@ def list_medicines(request: Request):
         [request.state.user["clinicId"]],
     )
     return {"medicines": [_medicine_payload(row) for row in rows]}
-
 
 @router.post("")
 def create_medicine(body: MedicineCreateBody, request: Request):
@@ -91,7 +85,6 @@ def create_medicine(body: MedicineCreateBody, request: Request):
         status_code=201,
         content=jsonable_encoder({"medicine": _medicine_payload(created)}),
     )
-
 
 @router.patch("/{medicine_id}")
 def patch_medicine(medicine_id: str, body: MedicinePatchBody, request: Request):
@@ -123,7 +116,6 @@ def patch_medicine(medicine_id: str, body: MedicinePatchBody, request: Request):
     if not rows:
         raise HTTPException(status_code=404, detail="Medicine not found")
     return {"medicine": _medicine_payload(rows[0])}
-
 
 @router.post("/{medicine_id}/restock")
 def restock(medicine_id: str, body: RestockBody, request: Request):
@@ -163,7 +155,6 @@ def _insert_medicine(client, user, name, unit, price, stock_qty):
             [user["clinicId"], row["id"], stock_qty, "Opening stock", user["id"]],
         )
     return row
-
 
 def _restock(client, user, medicine_id, qty, note):
     med = client.query(
