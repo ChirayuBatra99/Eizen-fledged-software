@@ -39,11 +39,11 @@ export function Layout({ children }) {
           ) : null}
           {isDoctor ? (
             <>
-              <NavLink to="/" className={linkClass} end>
-                Patient history
-              </NavLink>
               <NavLink to="/patients" className={linkClass}>
                 Patients
+              </NavLink>
+              <NavLink to="/" className={linkClass} end>
+                Patient history
               </NavLink>
               <NavLink to="/day" className={linkClass}>
                 Day report
