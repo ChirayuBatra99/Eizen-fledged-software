@@ -1,2 +1,7 @@
 fastapi
 uvicorn
+python-dotenv
+psycopg[binary]
+psycopg-pool
+bcrypt
+PyJWT
