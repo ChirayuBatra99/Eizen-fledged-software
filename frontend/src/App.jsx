@@ -1,27 +1,53 @@
-import { useState } from 'react'
-// import heroImg from './assets/hero.png'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from './assets/vite.svg'
-// import './App.css'
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useAuth } from "./AuthContext";
+import { Layout } from "./components/Layout";
+import { LoginPage } from "./pages/LoginPage";
+import { VisitPage } from "./pages/VisitPage";
+import { StockPage } from "./pages/StockPage";
+import { HistoryPage } from "./pages/HistoryPage";
+import { DayReportPage } from "./pages/DayReportPage";
+import { ReceptionHistoryPage } from "./pages/ReceptionHistoryPage";
+import { AllPatients } from "./pages/AllPatients";
 
-import Users from './pages/Users'
-import Order from './pages/Order'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+export default function App() {
+  const { user, ready } = useAuth();
 
-function App() {
-  const [count, setCount] = useState(0)
+  if (!ready) {
+    return <div className={tw.boot}>Loading…</div>;
+  }
+  if (!user) {
+    return <LoginPage />;
+  }
+
+  const desk = user.role === "receptionist";
+  const doctor = user.role === "doctor";
 
   return (
-    <>
-    <Router>
+    <Layout>
       <Routes>
-        <Route path="/" element={<Users />} />
-        <Route path="/order/:customer_id/:name" element={<Order />} />
+        {desk ? (
+          <>
+            <Route path="/" element={<VisitPage />} />
+            <Route path="/patients" element={<AllPatients />} />
+            <Route path="/history" element={<ReceptionHistoryPage />} />
+            <Route path="/stock" element={<StockPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
+        ) : null}
+        {doctor ? (
+          <>
+            <Route path="/" element={<HistoryPage />} />
+            <Route path="/patients" element={<AllPatients />} />
+            <Route path="/day" element={<DayReportPage />} />
+            <Route path="/stock" element={<StockPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
+        ) : null}
       </Routes>
-    </Router>
-     
-    </>
-  )
+    </Layout>
+  );
 }
 
-export default App
+const tw = {
+  boot: "min-h-screen flex items-center justify-center text-ink-soft text-lg font-semibold",
+};
