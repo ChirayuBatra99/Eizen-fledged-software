@@ -86,16 +86,13 @@ export function MedicineSelect({ medicines, value, onChange, placeholder, onOpen
 
 const tw = {
   wrap: "relative w-full",
-  trigger:
-    "w-full text-left rounded-xl border-2 border-clinic-200 px-3.5 py-3 bg-white min-h-12 hover:border-clinic-300 focus:outline-none focus:border-clinic-600 focus:ring-4 focus:ring-clinic-100",
+  trigger: "w-full text-left rounded-xl border-2 border-clinic-200 px-3.5 py-3 bg-white min-h-12 hover:border-clinic-300 focus:outline-none focus:border-clinic-600 focus:ring-4 focus:ring-clinic-100",
   triggerText: "flex flex-col gap-0.5",
   triggerName: "text-base font-semibold text-ink leading-snug",
   triggerStock: "text-sm font-medium text-clinic-700",
   placeholder: "text-base font-medium text-ink-soft",
-  panel:
-    "absolute z-30 mt-1.5 w-full bg-white border-2 border-clinic-200 rounded-xl shadow-lg overflow-hidden",
-  search:
-    "w-full border-b-2 border-clinic-100 px-3.5 py-3 text-base outline-none bg-clinic-50/50 focus:bg-white",
+  panel: "absolute z-30 mt-1.5 w-full bg-white border-2 border-clinic-200 rounded-xl shadow-lg overflow-hidden",
+  search: "w-full border-b-2 border-clinic-100 px-3.5 py-3 text-base outline-none bg-clinic-50/50 focus:bg-white",
   list: "max-h-60 overflow-y-auto",
   empty: "px-3.5 py-4 text-base text-ink-soft text-center",
   item: "w-full text-left px-3.5 py-3 hover:bg-clinic-50 flex flex-col gap-0.5 border-b border-clinic-100 last:border-0",

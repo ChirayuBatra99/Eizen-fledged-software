@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import { useAuth } from "./AuthContext";
 import { Layout } from "./components/Layout";
 import { LoginPage } from "./pages/LoginPage";
@@ -8,6 +9,7 @@ import { HistoryPage } from "./pages/HistoryPage";
 import { DayReportPage } from "./pages/DayReportPage";
 import { ReceptionHistoryPage } from "./pages/ReceptionHistoryPage";
 import { AllPatients } from "./pages/AllPatients";
+
 
 export default function App() {
   const { user, ready } = useAuth();
@@ -47,6 +49,7 @@ export default function App() {
     </Layout>
   );
 }
+
 
 const tw = {
   boot: "min-h-screen flex items-center justify-center text-ink-soft text-lg font-semibold",

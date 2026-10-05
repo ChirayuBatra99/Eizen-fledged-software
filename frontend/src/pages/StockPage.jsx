@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
 import { api } from "../api";
 import { MedicineSelect } from "../components/MedicineSelect";
+
 
 export function StockPage() {
   const [medicines, setMedicines] = useState([]);
@@ -221,14 +223,12 @@ const tw = {
   ok: "m-0 text-base font-semibold text-clinic-800 bg-clinic-50 border-2 border-clinic-200 rounded-xl px-4 py-3",
   err: "m-0 text-base font-semibold text-red-700 bg-red-50 border-2 border-red-200 rounded-xl px-4 py-3",
   stockRow: "grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch",
-  formCard:
-    "bg-white border-2 border-clinic-200 rounded-2xl p-4 sm:p-5 min-w-0 shadow-sm flex flex-col h-full",
+  formCard: "bg-white border-2 border-clinic-200 rounded-2xl p-4 sm:p-5 min-w-0 shadow-sm flex flex-col h-full",
   card: "bg-white border-2 border-clinic-200 rounded-2xl p-4 sm:p-5 min-w-0 shadow-sm",
   form: "flex flex-col gap-3.5 w-full flex-1",
   fieldGrid: "grid grid-cols-2 gap-3",
   label: "text-base font-bold text-ink flex flex-col gap-1.5 min-w-0",
-  input:
-    "w-full rounded-xl border-2 border-clinic-200 px-3.5 py-3 text-lg text-ink outline-none bg-clinic-50/30 focus:border-clinic-600 focus:bg-white focus:ring-4 focus:ring-clinic-100",
+  input: "w-full rounded-xl border-2 border-clinic-200 px-3.5 py-3 text-lg text-ink outline-none bg-clinic-50/30 focus:border-clinic-600 focus:bg-white focus:ring-4 focus:ring-clinic-100",
   btn: "mt-auto w-full rounded-xl bg-clinic-700 text-white font-bold py-3.5 min-h-12 text-base disabled:opacity-40 hover:bg-clinic-800",
   listHead: "flex items-center justify-between gap-3 mb-4",
   count: "text-sm font-bold text-ink-soft bg-clinic-100 rounded-full px-3 py-1.5 shrink-0",
@@ -246,6 +246,5 @@ const tw = {
   thRight: "text-right border-b-2 border-clinic-200 py-3 px-2 font-bold text-ink-soft",
   tr: "hover:bg-clinic-50",
   td: "border-b border-clinic-100 py-3.5 px-2 align-middle font-medium",
-  tdRight:
-    "border-b border-clinic-100 py-3.5 px-2 text-right tabular-nums align-middle whitespace-nowrap font-semibold",
+  tdRight: "border-b border-clinic-100 py-3.5 px-2 text-right tabular-nums align-middle whitespace-nowrap font-semibold",
 };

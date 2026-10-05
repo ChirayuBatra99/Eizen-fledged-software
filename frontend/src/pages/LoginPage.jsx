@@ -62,8 +62,7 @@ const tw = {
   title: "font-display text-3xl font-extrabold text-ink m-0 leading-tight",
   sub: "text-base text-ink-soft m-0 -mt-2 mb-1",
   label: "text-base font-bold text-ink flex flex-col gap-1.5",
-  input:
-    "rounded-xl border-2 border-clinic-200 px-4 py-3 text-lg text-ink outline-none bg-clinic-50/40 focus:border-clinic-600 focus:bg-white focus:ring-4 focus:ring-clinic-100",
+  input: "rounded-xl border-2 border-clinic-200 px-4 py-3 text-lg text-ink outline-none bg-clinic-50/40 focus:border-clinic-600 focus:bg-white focus:ring-4 focus:ring-clinic-100",
   error: "text-base font-semibold text-red-700 bg-red-50 border border-red-200 rounded-xl px-3 py-2.5 m-0",
   btn: "mt-1 rounded-xl bg-clinic-700 text-white text-lg font-bold py-3.5 min-h-12 shadow-sm hover:bg-clinic-800 disabled:opacity-50",
 };

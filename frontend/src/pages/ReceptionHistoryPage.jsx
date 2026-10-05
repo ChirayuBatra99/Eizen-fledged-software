@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+
 import { api } from "../api";
+
 
 const istDate = {
   timeZone: "Asia/Kolkata",
@@ -16,6 +18,7 @@ const istTime = {
   second: "2-digit",
   hour12: true,
 };
+
 
 function formatDate(iso) {
   return new Date(iso).toLocaleDateString("en-IN", istDate);
@@ -43,6 +46,7 @@ function groupByDate(visits) {
 function phoneInput(value) {
   return value.replace(/\D/g, "").slice(0, 10);
 }
+
 
 export function ReceptionHistoryPage() {
   const [phone, setPhone] = useState("");
@@ -201,22 +205,17 @@ const tw = {
   titleRow: "flex items-start justify-between gap-3 flex-wrap sm:flex-nowrap",
   h1: "font-display text-2xl sm:text-3xl font-extrabold text-ink m-0 tracking-tight",
   sub: "m-0 mt-1.5 text-base text-ink-soft max-w-xl",
-  refresh:
-    "shrink-0 rounded-xl border-2 border-clinic-200 bg-white text-ink font-bold px-4 py-2.5 min-h-12 text-base hover:bg-clinic-50 disabled:opacity-40",
+  refresh: "shrink-0 rounded-xl border-2 border-clinic-200 bg-white text-ink font-bold px-4 py-2.5 min-h-12 text-base hover:bg-clinic-50 disabled:opacity-40",
   searchCard: "bg-white border-2 border-clinic-200 rounded-2xl p-4 sm:p-5 shadow-sm",
   label: "text-base font-bold text-ink flex flex-col gap-2 min-w-0",
   row: "flex flex-col sm:flex-row gap-2.5",
-  input:
-    "w-full sm:flex-1 rounded-xl border-2 border-clinic-200 px-3.5 py-3 text-lg text-ink outline-none bg-clinic-50/30 focus:border-clinic-600 focus:bg-white focus:ring-4 focus:ring-clinic-100",
+  input: "w-full sm:flex-1 rounded-xl border-2 border-clinic-200 px-3.5 py-3 text-lg text-ink outline-none bg-clinic-50/30 focus:border-clinic-600 focus:bg-white focus:ring-4 focus:ring-clinic-100",
   btn: "rounded-xl bg-clinic-700 text-white font-bold px-5 py-3 min-h-12 text-base disabled:opacity-40 hover:bg-clinic-800",
-  ghost:
-    "rounded-xl border-2 border-clinic-200 bg-white text-ink font-bold px-4 py-3 min-h-12 text-base disabled:opacity-40 hover:bg-clinic-50",
+  ghost: "rounded-xl border-2 border-clinic-200 bg-white text-ink font-bold px-4 py-3 min-h-12 text-base disabled:opacity-40 hover:bg-clinic-50",
   err: "m-0 text-base font-semibold text-red-700 bg-red-50 border-2 border-red-200 rounded-xl px-4 py-3",
-  empty:
-    "m-0 text-base text-ink-soft text-center py-12 bg-white border-2 border-clinic-200 rounded-2xl font-medium",
+  empty: "m-0 text-base text-ink-soft text-center py-12 bg-white border-2 border-clinic-200 rounded-2xl font-medium",
   day: "flex flex-col gap-3",
-  dayTitle:
-    "m-0 text-base font-extrabold text-clinic-800 tracking-wide font-display",
+  dayTitle: "m-0 text-base font-extrabold text-clinic-800 tracking-wide font-display",
   stack: "flex flex-col gap-3.5",
   card: "bg-white border-2 border-clinic-200 rounded-2xl p-4 sm:p-5 shadow-sm",
   head: "flex items-start justify-between gap-3 mb-3",
@@ -225,10 +224,8 @@ const tw = {
   meta: "text-base text-ink-soft",
   time: "shrink-0 text-sm sm:text-base font-bold text-clinic-800 tabular-nums bg-clinic-100 rounded-xl px-3 py-1.5",
   badges: "flex flex-wrap items-center gap-2 mb-3",
-  payCash:
-    "text-sm font-bold tracking-wide text-amber-900 bg-amber-100 border border-amber-300 rounded-full px-3 py-1",
-  payUpi:
-    "text-sm font-bold tracking-wide text-sky-900 bg-sky-100 border border-sky-300 rounded-full px-3 py-1",
+  payCash: "text-sm font-bold tracking-wide text-amber-900 bg-amber-100 border border-amber-300 rounded-full px-3 py-1",
+  payUpi: "text-sm font-bold tracking-wide text-sky-900 bg-sky-100 border border-sky-300 rounded-full px-3 py-1",
   amt: "text-lg font-extrabold text-ink tabular-nums",
   cond: "m-0 mb-3 text-base text-ink bg-clinic-50 border border-clinic-100 rounded-xl px-3.5 py-2.5",
   list: "m-0 p-0 list-none flex flex-col gap-2",
