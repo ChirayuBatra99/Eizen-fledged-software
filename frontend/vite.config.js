@@ -12,6 +12,7 @@ export default defineConfig({
       "/medicines": { target: "http://localhost:4000", changeOrigin: true },
       "/visits": { target: "http://localhost:4000", changeOrigin: true },
       "/reports": { target: "http://localhost:4000", changeOrigin: true },
+      "/ai": { target: "http://localhost:4000", changeOrigin: true },
     },
   },
 });

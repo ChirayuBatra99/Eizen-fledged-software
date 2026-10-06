@@ -44,6 +44,8 @@ export function VisitPage() {
     gender: false,
   });
   const [qtyErrors, setQtyErrors] = useState({});
+  const [utterance, setUtterance] = useState("");
+  const [draftMeta, setDraftMeta] = useState(null);
 
   function markTouched(field) {
     setTouched((prev) => (prev[field] ? prev : { ...prev, [field]: true }));
@@ -156,6 +158,44 @@ export function VisitPage() {
     setPaid(false);
     setTouched({ phone: false, name: false, age: false, gender: false });
     setQtyErrors({});
+    setDraftMeta(null);
+  }
+
+  function applyDraft(result) {
+    const d = result.draft || {};
+    setName(d.name || "");
+    setPhone(phoneInput(d.phone || ""));
+    setAge(d.age != null ? String(d.age) : "");
+    setGender(d.gender || "");
+    setCondition(d.condition || "");
+    setPay(d.paymentMethod === "cash" || d.paymentMethod === "upi" ? d.paymentMethod : "");
+    setPaid(false);
+    const nextLines = (d.lines || [])
+      .filter((ln) => ln.medicineId)
+      .map((ln) => ({
+        key: crypto.randomUUID(),
+        medicineId: ln.medicineId,
+        qty: String(ln.qty ?? ""),
+        unitPrice: String(ln.unitPrice ?? ""),
+      }));
+    setLines(nextLines.length ? nextLines : [emptyLine()]);
+    setDraftMeta(result);
+    setTouched({ phone: true, name: true, age: true, gender: true });
+  }
+
+  async function onDraft() {
+    const text = utterance.trim();
+    if (!text) return;
+    setError("");
+    setSuccess("");
+    setBusy(true);
+    try {
+      applyDraft(await api.visitDraft(text));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function onSave() {
@@ -173,7 +213,7 @@ export function VisitPage() {
           qty: Number(l.qty),
           unitPrice: Number(l.unitPrice),
         }));
-      const data = await api.saveVisit({
+      const data = await api.confirmVisitDraft({
         name: name.trim(),
         phone,
         age: ageNum,
@@ -199,6 +239,32 @@ export function VisitPage() {
       <h1 className={tw.h1}>New visit</h1>
       {success ? <p className={tw.ok}>{success}</p> : null}
       {error ? <p className={tw.err}>{error}</p> : null}
+
+      <section className={tw.card}>
+        <h2 className={tw.h2}>Draft from note</h2>
+        <textarea
+          className={tw.input}
+          rows={3}
+          value={utterance}
+          onChange={(e) => setUtterance(e.target.value)}
+          placeholder="Ramesh 9876543210 fever, 10 paracetamol and ORS, UPI"
+        />
+        <button type="button" className={`${tw.add} mt-2`} disabled={busy || !utterance.trim()} onClick={onDraft}>
+          {busy ? "Drafting…" : "Build draft"}
+        </button>
+        {draftMeta ? (
+          <div className={tw.meta}>
+            <div>Path: {(draftMeta.path || []).join(" → ")}</div>
+            {(draftMeta.questions || []).map((q) => (
+              <div key={q}>{q}</div>
+            ))}
+            {(draftMeta.warnings || []).map((w) => (
+              <div key={w}>{w}</div>
+            ))}
+            {draftMeta.canConfirm ? <div>Ready to save.</div> : <div>Fix questions before save.</div>}
+          </div>
+        ) : null}
+      </section>
 
       <section className={tw.card}>
         <h2 className={tw.h2}>Patient</h2>
@@ -457,4 +523,5 @@ const tw = {
   paid: "px-6 py-3 rounded-lg border-2 border-amber-400 bg-white font-semibold disabled:opacity-40",
   paidOn: "px-6 py-3 rounded-lg border-2 border-amber-500 bg-amber-400 font-semibold",
   save: "w-full py-4 rounded-xl bg-emerald-800 text-white text-xl font-bold disabled:opacity-40",
+  meta: "mt-3 text-sm text-slate-600 flex flex-col gap-1",
 };

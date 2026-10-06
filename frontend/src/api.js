@@ -37,6 +37,16 @@ async function request(path, options = {}) {
 
     visits: () => request("/visits"),
     saveVisit: (body) =>  request("/visits", { method: "POST", body: JSON.stringify(body) }),
+    visitDraft: (utterance) =>
+      request("/ai/visit-draft", {
+        method: "POST",
+        body: JSON.stringify({ utterance }),
+      }),
+    confirmVisitDraft: (body) =>
+      request("/ai/visit-draft/confirm", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
 
     dailyReport: (date) =>  request(`/reports/daily${date ? `?date=${date}` : ""}`),
   };
