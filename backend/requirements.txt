@@ -5,3 +5,6 @@ psycopg[binary]
 psycopg-pool
 bcrypt
 PyJWT
+langgraph
+langchain-core
+langchain-openai

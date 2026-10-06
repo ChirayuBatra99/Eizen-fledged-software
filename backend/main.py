@@ -11,6 +11,7 @@ load_dotenv()
 
 from db import close_pool, get_pool
 from middleware import AppError
+from routes.ai import router as ai_router
 from routes.auth import router as auth_router
 from routes.medicines import router as medicines_router
 from routes.patients import router as patients_router
@@ -67,6 +68,7 @@ app.include_router(patients_router)
 app.include_router(medicines_router)
 app.include_router(visits_router)
 app.include_router(reports_router)
+app.include_router(ai_router)
 
 if __name__ == "__main__":
     import uvicorn

@@ -1,3 +1,4 @@
+from .ai import router as ai_router
 from .auth import router as auth_router
 from .medicines import router as medicines_router
 from .patients import router as patients_router
