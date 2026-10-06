@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 export function MedicineSelect({ medicines, value, onChange, placeholder, onOpen, excludeIds }) {
+
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
+  
   const wrapRef = useRef(null);
   const selected = medicines.find((m) => m.id === value);
 

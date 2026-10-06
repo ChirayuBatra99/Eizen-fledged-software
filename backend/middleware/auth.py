@@ -76,10 +76,10 @@ def require_auth(request: Request) -> dict:
     request.state.user = current
     return current
 
-def require_role(*roles: str):
-    def dependency(user: dict = Depends(require_auth)) -> dict:
-        if user.get("role") not in roles:
-            raise HTTPException(status_code=403, detail="Not allowed")
-        return user
+# def require_role(*roles: str):
+#     def dependency(user: dict = Depends(require_auth)) -> dict:
+#         if user.get("role") not in roles:
+#             raise HTTPException(status_code=403, detail="Not allowed")
+#         return user
 
-    return dependency
+#     return dependency

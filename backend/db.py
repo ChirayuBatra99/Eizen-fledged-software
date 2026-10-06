@@ -39,6 +39,8 @@ def query(text: str, params: Any = None) -> list[dict[str, Any]]:
         return list(result.fetchall()) if result.description else []
 
 
+
+#Not needed   ---->
 class Tx:
     def __init__(self, conn: psycopg.Connection):
         self.conn = conn
@@ -60,3 +62,5 @@ def execute_script(sql: str) -> None:
         raise RuntimeError("DATABASE_URL is not set")
     with psycopg.connect(url, autocommit=True, cursor_factory=ClientCursor) as conn:
         conn.execute(sql)
+
+#  <---- Not needed   

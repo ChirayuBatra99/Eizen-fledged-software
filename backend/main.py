@@ -40,17 +40,14 @@ app.add_middleware(
 async def app_error_handler(_request: Request, exc: AppError):
     return JSONResponse(status_code=exc.status, content={"error": exc.message})
 
-
 @app.exception_handler(HTTPException)
 async def http_error_handler(_request: Request, exc: HTTPException):
     message = exc.detail if isinstance(exc.detail, str) else "Request failed"
     return JSONResponse(status_code=exc.status_code, content={"error": message})
 
-
 @app.exception_handler(RequestValidationError)
 async def validation_error_handler(_request: Request, _exc: RequestValidationError):
     return JSONResponse(status_code=400, content={"error": "Invalid request"})
-
 
 @app.exception_handler(Exception)
 async def server_error_handler(_request: Request, exc: Exception):
