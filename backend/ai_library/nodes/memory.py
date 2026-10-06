@@ -1,3 +1,10 @@
+"""
+Loads this patient's past visits once we know who they are.
+Compares today's condition to earlier visits and warns on a likely repeat.
+If there is no matched patient yet, history is left empty and we move on.
+This is context for the doctor, not a block on creating the visit.
+"""
+
 from ai_library.state import VisitDraftState
 from ai_library.tools import visit_history
 

@@ -1,3 +1,10 @@
+"""
+Matches patient with any history by name/ phone.
+If matched, the person details loaded, if not then create a new patient.
+If multiple matches, ask for a 10-digit phone.
+If no name matched, then ask for phone to create a new patient.
+"""
+
 from ai_library.state import VisitDraftState
 from ai_library.tools import find_patients
 from lib import is_valid_phone, normalize_phone

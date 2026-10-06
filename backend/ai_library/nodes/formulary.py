@@ -1,3 +1,9 @@
+"""
+Spoken medicine names to catalog items, matches by exact name, partial name, overlap.
+Then fills with price, quantity, stock, and check if we can sell that qty.
+Anything unclear or low stock is shown as warning.
+"""
+
 import re
 
 from ai_library.state import VisitDraftState

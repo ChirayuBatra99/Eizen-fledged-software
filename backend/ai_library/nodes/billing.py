@@ -1,3 +1,8 @@
+"""
+Enough stock then add the total. ALso check everything like a name, phone, payment method.
+If yes then the draft can be confirmed and saved.
+"""
+
 from ai_library.state import VisitDraftState
 from lib import is_valid_phone, normalize_phone
 

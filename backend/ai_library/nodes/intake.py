@@ -1,3 +1,8 @@
+"""
+Receptionist typed data to strcutured data and mapping to state.
+If insuffienecient then ask follow up questions.
+"""
+
 from ai_library.llm import extract_slots
 from ai_library.state import VisitDraftState
 
