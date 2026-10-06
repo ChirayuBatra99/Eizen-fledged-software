@@ -249,7 +249,7 @@ export function VisitPage() {
           onChange={(e) => setUtterance(e.target.value)}
           placeholder="Ramesh 9876543210 fever, 10 paracetamol and ORS, UPI"
         />
-        <button type="button" className={`${tw.add} mt-2`} disabled={busy || !utterance.trim()} onClick={onDraft}>
+        <button type="button" className={`${tw.add} mt-2 ml-5`} disabled={busy || !utterance.trim()} onClick={onDraft}>
           {busy ? "Drafting…" : "Build draft"}
         </button>
         {draftMeta ? (
