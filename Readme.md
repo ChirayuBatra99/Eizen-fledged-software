@@ -31,7 +31,7 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env        # fill DATABASE_URL, JWT_SECRET, XAI_API_KEY
 python migrate.py           # applies schema.sql
-python main.py              # http://localhost:4000
+uvicorn main:app --port 4000              # http://localhost:4000
 ```
 
 `XAI_API_KEY` is only needed for draft-from-note. The rest of the desk works without it.
